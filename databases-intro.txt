@@ -1,0 +1,58 @@
+Exercises
+Create a new repository on GitHub to hold your assignments for the Databases module. Create a new branch for Checkpoint 1. Submit your answers.
+
+1. What data types do each of these values represent?
+    - "A Clockwork Orange" - string
+    - 42 - integer 
+    - 09/02/1945 - date
+    - 98.7 - float
+    - $15.99 - numeric/float/decimal (if stored as a number w/o sign), some versions of SQL have money data types
+
+2. Explain when a database would be used. Explain when a text file would be used.
+    - databases are commonly used when there are many users accessing/inputting data from many different endpoints
+    - text files would be better suited when data is stored for a singular session and not shared/updated by many
+
+3. Describe one difference between SQL and other programming languages.
+    - SQL doesn't require that we define the algorithms themselves
+
+4. In your own words, explain how the pieces of a database system fit together at a high level.
+    - a database holds tables, a table holds rows, a row hold columns, columns hold data or like data types
+
+5. Explain the meaning of table, row, column, and value.
+    - table is the container for like data
+    - row is an individual group of table data
+    - column is a container of like information with a value
+    - value is the data in each column
+
+6. List three data types that can be used in a table.
+    - integer, string and date
+
+7. Given this payments table, provide an English description of the following queries and include their results:
+
+     SELECT date, amount
+     FROM payments;
+
+        - retrieve the date and amount columns from the payments table
+
+     SELECT amount
+     FROM payments
+     WHERE amount > 500;
+
+        - retrieve the amount from the payments table where the amount is greater than 500
+
+     SELECT *
+     FROM payments
+     WHERE payee = 'Mega Foods';
+
+        - retrieve all columns from the payments table where the payee contains the value "Mega Foods" (case sensitive)
+
+8. Given this users table, write SQL queries using the following criteria and include the output:
+
+    - The email and sign-up date for the user named DeAndre Data.
+        SELECT email, signup FROM users WHERE name = 'DeAndre Data';
+
+    - The user ID for the user with email 'aleesia.algorithm@uw.edu'.
+        SELECT userid FROM users WHERE email = 'aleesia.algorithm@uw.edu';
+
+    - All the columns for the user ID equal to 4.
+        SELECT * FROM users WHERE userid = 4;
