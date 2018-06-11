@@ -13,8 +13,8 @@ NOTE: Real-world examples must be your own and not based on the text or previous
 
 3. Define primary key and foreign key. Give a real-world example for each.
     - A primary key is a unique identifier that only exists once in the entire table. It allows you to select a single row of data. A primary key in one table is often the foreign key in another, which allows you to link the two tables.
-    - primary key = a customer number in a customer database
-    - foreign key = that same customer number, but in a customer address database where there could be many addresses for one customer
+    - primary key = a customer number in a customer table - a unique identifier
+    - foreign key = that same customer number, but in a customer address table where there could be many addresses for one customer - a non-unique identifier
 
 4. Define aliasing.
     - giving a table's column name a shorter variable name
@@ -133,13 +133,18 @@ NOTE: Real-world examples must be your own and not based on the text or previous
     - List all of the library patrons. If they have one or more books checked out, list the books with the patrons.
         select p.*,b.*
         from patrons as p
-        join transactions as t
+        full outer join transactions as t
         on p.id=t.patron_id
-        join books as b
-        on t.isbn=b.isbn
-        where t.checked_in_date IS NULL;
+        left outer join books as b
+        on t.isbn=b.isbn and t.checked_in_date is null
+        order by p.id;
 
-        | id |           name |       isbn |                                   title |          author |
-        |----|----------------|------------|-----------------------------------------|-----------------|
-        |  2 |     Terry Boot | 9136884926 |                  Advanced Potion-Making | Libatius Borage |
-        |  5 | Cedric Diggory | 3458400871 | Fantastic Beasts and Where to Find Them |  Newt Scamander |
+| id |             name |       isbn |                                   title |          author |
+|----|------------------|------------|-----------------------------------------|-----------------|
+|  1 | Hermione Granger |     (null) |                                  (null) |          (null) |
+|  1 | Hermione Granger |     (null) |                                  (null) |          (null) |
+|  2 |       Terry Boot | 9136884926 |                  Advanced Potion-Making | Libatius Borage |
+|  2 |       Terry Boot |     (null) |                                  (null) |          (null) |
+|  3 |      Padma Patil |     (null) |                                  (null) |          (null) |
+|  4 |        Cho Chang |     (null) |                                  (null) |          (null) |
+|  5 |   Cedric Diggory | 3458400871 | Fantastic Beasts and Where to Find Them |  Newt Scamander |
